@@ -1,9 +1,11 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {VideoIcon} from '@sanity/icons'
 
-export const postType = defineType({
-  name: 'post',
-  title: 'Post',
+export const appearanceType = defineType({
+  name: 'appearance',
+  title: 'Appearance',
   type: 'document',
+  icon: VideoIcon,
   fields: [
     defineField({
       name: 'title',
@@ -27,7 +29,7 @@ export const postType = defineType({
       type: 'image',
     }),
     defineField({
-      name: 'body',
+      name: 'description',
       type: 'array',
       of: [
         defineArrayMember({type: 'block'}),
@@ -55,5 +57,30 @@ export const postType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'externalUrl',
+      type: 'url',
+      title: 'External URL',
+      validation: (rule) =>
+        rule.required().uri({
+          scheme: ['http', 'https'],
+        }),
+    }),
+    defineField({
+      name: 'appearanceType',
+      type: 'string',
+      title: 'Appearance Type',
+      options: {
+        list: [
+          {title: 'Podcast', value: 'podcast'},
+          {title: 'Video', value: 'video'},
+          {title: 'Talk', value: 'talk'},
+          {title: 'Presentation', value: 'presentation'},
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
   ],
 })
+

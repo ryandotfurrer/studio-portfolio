@@ -1,9 +1,11 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {FolderIcon} from '@sanity/icons'
 
-export const postType = defineType({
-  name: 'post',
-  title: 'Post',
+export const projectType = defineType({
+  name: 'project',
+  title: 'Project',
   type: 'document',
+  icon: FolderIcon,
   fields: [
     defineField({
       name: 'title',
@@ -27,7 +29,7 @@ export const postType = defineType({
       type: 'image',
     }),
     defineField({
-      name: 'body',
+      name: 'description',
       type: 'array',
       of: [
         defineArrayMember({type: 'block'}),
@@ -55,5 +57,16 @@ export const postType = defineType({
         }),
       ],
     }),
+    defineField({
+      name: 'url',
+      type: 'url',
+      title: 'Project URL',
+    }),
+    defineField({
+      name: 'techStack',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+    }),
   ],
 })
+
