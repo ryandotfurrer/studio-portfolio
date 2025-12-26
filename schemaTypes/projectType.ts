@@ -37,6 +37,7 @@ export const projectType = defineType({
       type: 'array',
       title: 'Tech Stack',
       of: [defineArrayMember({type: 'string'})],
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'projectUrl',
@@ -49,6 +50,12 @@ export const projectType = defineType({
       title: 'GitHub Repo URL',
     }),
     defineField({
+      name: 'ogImage',
+      type: 'image',
+      title: 'OG Image',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'headerImage',
       type: 'image',
       title: 'Header Image',
@@ -57,7 +64,8 @@ export const projectType = defineType({
       name: 'description',
       type: 'text',
       title: 'Description',
-      validation: (rule) => rule.max(160).warning('Description should be 160 characters or less'),
+      validation: (rule) =>
+        rule.max(160).warning('Description should be 160 characters or less').required(),
     }),
     defineField({
       name: 'body',
