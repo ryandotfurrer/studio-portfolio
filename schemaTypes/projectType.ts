@@ -34,7 +34,7 @@ export const projectType = defineType({
       type: 'image',
     }),
     defineField({
-      name: 'description',
+      name: 'body',
       type: 'array',
       of: [
         defineArrayMember({type: 'block'}),
