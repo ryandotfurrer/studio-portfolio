@@ -28,8 +28,14 @@ export const postType = defineType({
       initialValue: () => new Date().toISOString(),
     }),
     defineField({
-      name: 'image',
+      name: 'headerImage',
       type: 'image',
+    }),
+    defineField({
+      name: 'description',
+      type: 'text',
+      title: 'Description',
+      validation: (rule) => rule.max(160).warning('Description should be 160 characters or less'),
     }),
     defineField({
       name: 'body',
