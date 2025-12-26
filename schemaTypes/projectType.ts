@@ -8,30 +8,51 @@ export const projectType = defineType({
   icon: FolderIcon,
   fields: [
     defineField({
-      name: 'title',
+      name: 'projectTitle',
       type: 'string',
+      title: 'Project Title',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
-      options: {source: 'title'},
+      options: {source: 'projectTitle'},
+      title: 'Slug',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
+      title: 'Published At',
       initialValue: () => new Date().toISOString(),
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'updatedAt',
       type: 'datetime',
+      title: 'Updated At',
       initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
+      name: 'techStack',
+      type: 'array',
+      title: 'Tech Stack',
+      of: [defineArrayMember({type: 'string'})],
+    }),
+    defineField({
+      name: 'projectUrl',
+      type: 'url',
+      title: 'Live Site URL',
+    }),
+    defineField({
+      name: 'githubUrl',
+      type: 'url',
+      title: 'GitHub Repo URL',
     }),
     defineField({
       name: 'headerImage',
       type: 'image',
+      title: 'Header Image',
     }),
     defineField({
       name: 'description',
@@ -42,6 +63,7 @@ export const projectType = defineType({
     defineField({
       name: 'body',
       type: 'array',
+      title: 'Body',
       of: [
         defineArrayMember({type: 'block'}),
         defineArrayMember({type: 'code'}),
@@ -61,22 +83,13 @@ export const projectType = defineType({
     defineField({
       name: 'tags',
       type: 'array',
+      title: 'Tags',
       of: [
         defineArrayMember({
           type: 'reference',
           to: [{type: 'tag'}],
         }),
       ],
-    }),
-    defineField({
-      name: 'url',
-      type: 'url',
-      title: 'Project URL',
-    }),
-    defineField({
-      name: 'techStack',
-      type: 'array',
-      of: [defineArrayMember({type: 'string'})],
     }),
   ],
 })

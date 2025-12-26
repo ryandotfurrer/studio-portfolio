@@ -34,6 +34,30 @@ export const appearanceType = defineType({
       type: 'image',
     }),
     defineField({
+      name: 'externalUrl',
+      type: 'url',
+      title: 'External URL',
+      validation: (rule) =>
+        rule.required().uri({
+          scheme: ['http', 'https'],
+        }),
+    }),
+    defineField({
+      name: 'appearanceType',
+      type: 'string',
+      title: 'Appearance Type',
+      options: {
+        list: [
+          {title: 'Podcast', value: 'podcast'},
+          {title: 'Video', value: 'video'},
+          {title: 'Talk', value: 'talk'},
+          {title: 'Presentation', value: 'presentation'},
+        ],
+        layout: 'radio',
+      },
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
       name: 'description',
       type: 'text',
       title: 'Description',
@@ -67,30 +91,6 @@ export const appearanceType = defineType({
           to: [{type: 'tag'}],
         }),
       ],
-    }),
-    defineField({
-      name: 'externalUrl',
-      type: 'url',
-      title: 'External URL',
-      validation: (rule) =>
-        rule.required().uri({
-          scheme: ['http', 'https'],
-        }),
-    }),
-    defineField({
-      name: 'appearanceType',
-      type: 'string',
-      title: 'Appearance Type',
-      options: {
-        list: [
-          {title: 'Podcast', value: 'podcast'},
-          {title: 'Video', value: 'video'},
-          {title: 'Talk', value: 'talk'},
-          {title: 'Presentation', value: 'presentation'},
-        ],
-        layout: 'radio',
-      },
-      validation: (rule) => rule.required(),
     }),
   ],
 })
