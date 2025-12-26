@@ -25,11 +25,16 @@ export const appearanceType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'updatedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),
     defineField({
-      name: 'description',
+      name: 'body',
       type: 'array',
       of: [
         defineArrayMember({type: 'block'}),
@@ -83,4 +88,3 @@ export const appearanceType = defineType({
     }),
   ],
 })
-

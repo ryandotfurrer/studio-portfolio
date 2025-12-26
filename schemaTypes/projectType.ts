@@ -25,6 +25,11 @@ export const projectType = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: 'updatedAt',
+      type: 'datetime',
+      initialValue: () => new Date().toISOString(),
+    }),
+    defineField({
       name: 'image',
       type: 'image',
     }),
@@ -69,4 +74,3 @@ export const projectType = defineType({
     }),
   ],
 })
-
